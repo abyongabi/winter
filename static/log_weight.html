@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Weight</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Log Your Weight</h1>
+    <form action="/user/log" method="get">
+        <!-- Input for user_id -->
+        <label for="user_id">User ID:</label><br>
+        <input type="number" id="user_id" name="user_id" required><br><br>
+
+        <!-- Input for weight -->
+        <label for="weight">Weight (kg):</label><br>
+        <input type="number" id="weight" name="weight" step="any" required><br><br>
+
+        <input type="submit" value="Log Weight">
+    </form>
+</body>
+</html>

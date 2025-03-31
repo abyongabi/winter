@@ -11,6 +11,7 @@ def main(request: LoginUserRequest, db: Session) -> LoginUserResponse:
     columns = result.keys()
     rows = result.fetchall()
     result = [dict(zip(columns, row)) for row in rows]
+    print(result)
     if len(result) == 1:
         return LoginUserResponse(result="Success")
     return LoginUserResponse(result="Failed")

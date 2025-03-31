@@ -18,3 +18,12 @@ class CreateUserRequest(BaseModel):
 
 class CreateUserResponse(BaseModel):
     id: int
+
+
+class LogUserRequest(BaseModel):
+    user_id: int
+    weight: float
+
+class LogUserResponse(BaseModel):
+    day: int
+    difference: float
