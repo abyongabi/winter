@@ -1,8 +1,10 @@
-from typing import Optional, Annotated
+from typing import Annotated
 from fastapi import FastAPI, Depends
+from sqlalchemy.orm import Session
+import database
 
-from model import LoginRequest, LoginResponse
-from services import login_service
+from model import LoginUserRequest, LoginUserResponse, CreateUserRequest, CreateUserResponse
+from services import login_user_service, create_user_service
 
 app = FastAPI()
 
@@ -12,6 +14,11 @@ async def root():
     return {"message": "Hello World"}
 
 
-@app.get("/login")
-def login(request: Annotated[LoginRequest, Depends()]) -> LoginResponse:
-    return login_service.main(request)
+@app.get("/user/login")
+def login_user(request: Annotated[LoginUserRequest, Depends()], db: Session = Depends(database.get_db)) -> LoginUserResponse:
+    return login_user_service.main(request, db)
+
+
+@app.get("/user/create")
+def create_user(request: Annotated[CreateUserRequest, Depends()], db: Session = Depends(database.get_db)) -> CreateUserResponse:
+    return create_user_service.main(request, db)
