@@ -1,6 +1,8 @@
-from typing import Optional
+from typing import Optional, Annotated
+from fastapi import FastAPI, Depends
 
-from fastapi import FastAPI
+from model import LoginRequest, LoginResponse
+from services import login_service
 
 app = FastAPI()
 
@@ -9,6 +11,7 @@ app = FastAPI()
 async def root():
     return {"message": "Hello World"}
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+
+@app.get("/login")
+def login(request: Annotated[LoginRequest, Depends()]) -> LoginResponse:
+    return login_service.main(request)
