@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 
-from model import CreateUserRequest, CreateUserResponse
+from app.model import CreateUserRequest, CreateUserResponse
 
 
 def main(request: CreateUserRequest, db: Session) -> CreateUserResponse:
